@@ -1,67 +1,71 @@
 from random import randint
 
-class Hero:
-    def __init__(self, name, life, mana, money, attack, defense):
+class Character:
+    def __init__(self, name, life, attack_power):
         self.name = name
         self.life = life
+        self.attack_power = attack_power
+
+class Hero(Character):
+    def __init__(self, name, life, mana, money, attack, defense):
+        super().__init__(name, life, attack)
         self.mana = mana
         self.money = money
-        self.attack = attack
-        self.defense = defense 
-
-class Wolf:
-    def __init__(self, name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
-
-class Dragon:
-    def __init__(self, name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
-
-class Shark :
-    def __init__(self, name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
-
-class Barbarian:
-    def __init__(self,name,life,attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
-
-class Scorpio:
-    def __init__(self,name,life,attack_power):
-        self.name = name 
+        self.defense = defense
         self.life = life 
-        self.attack_power = attack_power
+        self.attack = attack
 
-class Shaman:
+class Enemy(Character):
     def __init__(self, name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
+        super().__init__(name, life, attack_power)
 
-class Fox:
-    def __init__(self, name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
+class Wolf(Enemy):
+    def __init__(self, name):
+        super().__init__(name, life=80, attack_power=20)
 
-class Snake:
-    def __init__(self, name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
+class Dragon(Enemy):
+    def __init__(self, name):
+        super().__init__(name, life=100, attack_power=40)
 
-class Bear:
-    def __init__(self,name, life, attack_power):
-        self.name = name
-        self.life = life
-        self.attack_power = attack_power
+class Shark(Enemy):
+    def __init__(self, name):
+        super().__init__(name, life=80, attack_power=20)
+
+class Barbarian(Enemy):
+    def __init__(self, name):
+        super().__init__(name, life=60, attack_power=20)
+
+class Scorpio(Enemy):
+    def __init__(self,name):
+        super().__init__(name, life= 50, attack_power =15)
+
+class Shaman(Enemy):
+    def __init__(self, name,):
+        super().__init__(name, life = 40, attack_power = 25)
+
+class Fox(Enemy):
+    def __init__(self, name,):
+        super().__init__(name, life = 60, attack_power= 15)
+
+class Snake(Enemy):
+    def __init__(self, name,):
+        super().__init__(name, life = 100, attack_power = 10)
+
+class Bear(Enemy):
+    def __init__(self,name, ):
+        super().__init__(name, life = 40, attack_power = 20)
+
+class Spider(Enemy):
+    def __init__(self,name):
+        super().__init__(name, life = 20, attack_power = 18)
+
+class Deer(Enemy):
+    def __init__(self,name):
+        super().__init__(name, life = 30, attack_power=9)
+
+class Sigma(Enemy):
+    def __init__(self,name):
+        super().__init__(name, life = 35, attack_power= 22)
 
 class Game:
     def __init__(self):
@@ -176,7 +180,7 @@ class Game:
     def battle_wolf(self):
         for i in range(3):
             wolf_name = input(f"Podaj imię {i+1} wilka: ")
-            wolf = Wolf(wolf_name, 80, 20)
+            wolf = Wolf(wolf_name, )
             print(f"Rozpoczynasz walkę z {wolf.name}em!")
 
             reward = randint(50, 100)
@@ -276,7 +280,7 @@ class Game:
 
     def encounter_dragon(self):
         dragon_name = input("Podaj imię smoka: ")
-        dragon = Dragon(dragon_name, 100, 40)
+        dragon = Dragon(dragon_name,)
         print(f"Podczas podróży przez las, natykasz się na straszliwego smoka o imieniu {dragon.name}!")
         print("To jest boss tego obszaru. Walczysz z nim, aby zdobyć pierwszy z pieciu magicznych artefaktów.")
 
@@ -333,7 +337,7 @@ class Game:
     
     def encounter_Shark(self):
         shark_name = input("Podaj imię rekina : ")
-        shark = Shark(shark_name, 80, 20)
+        shark = Shark(shark_name,)
         print(f"Podczas swojej przygody natrafiasz na bossa oceanu o imieniu {shark.name}!")
         print("To jest boss tego obszaru. Walczysz z nim, aby zdobyć drugi z pieciu magicznych artefaktów.")
 
@@ -392,7 +396,7 @@ class Game:
 
     def encounter_barbarian(self):
         barbarian_name = input("Podaj imie barbarzyńcy: ")
-        barbarian = Barbarian(barbarian_name, 60, 20)
+        barbarian = Barbarian(barbarian_name,)
         print(f"Podczas swojej przygody natrafiasz na bossa miasta o imieniu {barbarian.name}!")
         print("To jest boss tego obszaru. Walczysz z nim lub możesz go przekupić aby zdobyć trzeci z pieciu magicznych artefaktów.")
 
@@ -454,7 +458,7 @@ class Game:
     
     def encounter_scorpio(self):
         scorpio_name = input("Podaj imie skorpiona: ")
-        scorpio = Scorpio(scorpio_name, 50, 15)
+        scorpio = Scorpio(scorpio_name,)
         
         print(f"Podczas swojej przygody natrafiasz na bossa pustyni o imieniu {scorpio.name}!")
         print("To jest boss tego obszaru. Walczysz z nim, aby zdobyć czwarty z magicznych artefaktów.")
@@ -539,7 +543,7 @@ class Game:
     
     def encounter_shaman(self):
         shaman_name = input("Podaj imie shamana: ")
-        shaman = Shaman(shaman_name, 40, 25)
+        shaman = Shaman(shaman_name,)
         
         print(f"Podczas swojej przygody natrafiasz na bossa gor o imieniu {shaman.name}!")
         print("To jest boss tego obszaru. Walczysz z nim, aby zdobyć piaty  z magicznych artefaktów.")
@@ -672,7 +676,7 @@ class Game:
             "4.Miecz i tarcza (600 pieniedzy)": self.miecz_tarcza
         }
         print("Dostępne przedmioty:")
-        for item, function in available_items.items():
+        for item, self.visit_shop in available_items.items():
             print(f"{item}")
 
         decision = input("Podaj numer opcji: ")
@@ -741,7 +745,7 @@ class Game:
 
     def battle_fox(self):
         fox_name = input("Podaj imię lisa: ")
-        fox = Fox(fox_name, 60, 15)
+        fox = Fox(fox_name,)
         print(f"Rozpoczynasz walkę z {fox.name}em!")
 
         reward = randint(100, 200)
@@ -796,7 +800,7 @@ class Game:
 
     def encounter_snake(self):
         snake_name = input("Podaj imię węża: ")
-        snake = Snake(snake_name, 100, 10)
+        snake = Snake(snake_name,)
         
         print(f"Podczas swojej przygody do królestwa natrafiasz na węża o imieniu {snake.name}!")
         money = randint(30,50)  
@@ -814,7 +818,7 @@ class Game:
                 self.avoiding_snake(snake,money,mana)
         else:
             print("Niepoprawny wybór. Spróbuj ponownie.")
-            self.encounter_beggar()
+            self.encounter_snake()
     
     def battle_snake(self,snake):
         for _ in range(5):
@@ -857,7 +861,7 @@ class Game:
 
     def encounter_bear(self):
         bear_name = input("Podaj imię misia: ")
-        bear = Bear(bear_name, 40, 20)
+        bear = Bear(bear_name,)
 
         print(f"Podczas swojej przygody do królestwa natrafiasz na ostatniego potwora misia o imieniu {bear.name}!")
         money = randint(40, 60)  
@@ -875,7 +879,7 @@ class Game:
                 self.avoiding_bear(bear,money,)
         else:
             print("Niepoprawny wybór. Spróbuj ponownie.")
-            self.encounter_beggar()
+            self.encounter_bear()
     
     def battle_bear(self,bear,attack,money):
         for _ in range(3):
@@ -888,8 +892,8 @@ class Game:
 
             if bear.life <= 0:
                 print(f"Gratulacje! Pokonałeś {bear.name}a, dostajesz {attack} punktów ataku i {money} pieniedzy.")
-                self.hero.money += attack
-                self.hero.mana += money
+                self.hero.attack += attack
+                self.hero.money += money
                 print(f"Aktualny stan zlota: {self.hero.money}")
                 print(f"Aktualny stan punktów ataku: {self.hero.attack}")
                 return
@@ -916,9 +920,201 @@ class Game:
         print(f"Aktualny stan zlota: {self.hero.money}")
     
     def go_dangerous_way(self):
-        print("Ominąłeś biedaka i kontynuujesz podróż niebezpieczną drogą.")
+        print("Ominałes biedaka.")
+        print("Idziesz niebezpieczną drogą do królestwa przez co masz wiecej walk. ")
+
+        self.encounter_big_spider()
+        self.encounter_deer()
+        self.encounter_sigma()
+
+    def encounter_big_spider(self):
+        spider_name = input("Podaj imię pająka: ")
+        spider = Spider(spider_name,)
         
+        print(f"Podczas swojej przygody do królestwa wchodzisz do jaskini gdzie jest duzy pająk o imieniu {spider.name}!")
+
+        attack = randint(30,50)  
+        money = randint(10,16)
+        print("Co chcesz zrobić?")
+        print(f"1. Walczyć z {spider_name}em i dostać nagrodę.")
+        print(f"2. Uciec przed {spider_name}em i stracić {money} pieniędzy.")
+
+        decision = input("Wybierz opcję: ")
+
+        if decision == "1":
+            self.battle_spider(spider,attack)
+        elif decision == "2":
+            self.escape_spider(spider,money)
+        else:
+            print("Niepoprawny wybór. Spróbuj ponownie.")
+            self.encounter_big_spider()
+    
+    def battle_spider(self,spider,attack):
+        for _ in range(4):
+            print(f"Rozpoczynasz walkę z {spider.name}em !")
+            hero_damage = randint(self.hero.attack // 2, self.hero.attack)
+            spider_damage = randint(spider.attack_power // 2, spider.attack_power)
+            
+            print(f"Atakujesz {spider.name}a i zadajesz mu {hero_damage} obrażeń.")
+            spider.life -= hero_damage
+
+            if spider.life <= 0:
+                print(f"Gratulacje! Pokonałeś {spider.name}a, dostajesz {attack} punktów ataku .")
+                self.hero.attack += attack
+                print(f"Aktualny stan punktów ataku: {self.hero.attack}")
+                return
+            
+            print(f"{spider.name} kontratakuje i zadaje ci {spider_damage} obrażeń.")
+            self.hero.life -= spider_damage
+
+            if self.hero.life <= 0:
+                print(f"Zostałeś pokonany przez {spider.name}a. Koniec gry.")
+                return
+            
+            print(f"Aktualny stan życia {spider.name}a: {spider.life}")
+            print(f"Aktualny stan  życia {self.name}a : {self.hero.life}")
+            
+            print("Walka zakończona.")
+    
+    def escape_spider(self,spider,money):
+        print(f"Uciekasz z jaskini przed {spider.name}em.")
+        print(f"Podczas ucieczki tracisz", money ,"pieniedzy.")
+
+        self.hero.money -= money
+        
+        print(f"Aktualny stan zlota: {self.hero.money}")
+
+    def encounter_deer(self):
+        deer_name = input("Podaj imię jelenia: ")
+        deer = Deer(deer_name,)
+
+        print(f"Podczas swojej przygody do królestwa wchodzisz do lasu i trafiasz na jelenia o imieniu {deer.name}!")
+
+        money = randint(40, 60)  
+        defense = randint(30, 50)
+        life = randint(40, 60)
+        
+        print("Co chcesz zrobić?")
+        print(f"1. Walczyć z {deer_name}em i dostać nagrodę.")
+        print(f"2. Dać mu pieniadze i stracić {money} pieniędzy.")
+
+        decision = input("Wybierz opcję: ")
+
+        if decision == "1":
+            self.battle_deer(deer,defense,life)
+        elif decision == "2":
+            self.give_money_deer(deer,money)
+        else:
+            print("Niepoprawny wybór. Spróbuj ponownie.")
+            self.encounter_deer()
+    
+    def battle_deer(self,deer,defense,life):
+        for _ in range(5):
+            print(f"Rozpoczynasz walkę z {deer.name}em !")
+            hero_damage = randint(self.hero.attack // 2, self.hero.attack)
+            deer_damage = randint(deer.attack_power // 2, deer.attack_power)
+            
+            print(f"Atakujesz {deer.name}a i zadajesz mu {hero_damage} obrażeń.")
+            deer.life -= hero_damage
+
+            if deer.life <= 0:
+                print(f"Gratulacje! Pokonałeś {deer.name}a, dostajesz {life} punktów ataku i {defense} punktów obrony .")
+                self.hero.life += life
+                self.hero.defense += defense
+                print(f"Aktualny stan punktów ataku: {self.hero.attack}")
+                return
+            
+            print(f"{deer.name} kontratakuje i zadaje ci {deer_damage} obrażeń.")
+            self.hero.life -= deer_damage
+
+            if self.hero.life <= 0:
+                print(f"Zostałeś pokonany przez {deer.name}a. Koniec gry.")
+                return
+            
+            print(f"Aktualny stan życia {deer.name}a: {deer.life}")
+            print(f"Aktualny stan  życia {self.name}a : {self.hero.life}")
+            
+            print("Walka zakończona.")
+    
+    def give_money_deer(self,deer,money):
+        print(f"Dajesz pieniadze {deer.name}owi i tracisz.", money,"pieniedzy")
+        
+        self.hero.money -= money
+
+        print(f"Aktualny stan zlota: {self.hero.money}")
+
+
+    def encounter_sigma(self):
+        sigma_name = input("Podaj imię sigmy: ")
+        sigma = Sigma(sigma_name,)
+
+        print(f"Podczas swojej przygody do królestwa trafiasz na ostatniego bossa o imieniu {sigma.name}!")
+
+        money = randint(40, 60)  
+        mana = randint(20, 50)
+        life = randint(40, 60)
+        
+        print("Co chcesz zrobić?")
+        print(f"1. Walczyć z {sigma_name}em i dostać nagrodę.")
+        print(f"2. Zaproponować silownie sigmie")
+    
+        decision = input("Wybierz opcję: ")
+
+        if decision == "1":
+            self.battle_sigma(sigma,mana,life)
+        elif decision == "2":
+            self.go_gym_with_sigma(sigma,money,mana,life)
+        else:
+            print("Niepoprawny wybór. Spróbuj ponownie.")
+            self.encounter_sigma()
+
+    def battle_sigma(self,sigma,mana,life):
+        for _ in range(3):
+            print(f"Rozpoczynasz walkę z {sigma.name}em !")
+            hero_damage = randint(self.hero.attack // 2, self.hero.attack)
+            sigma_damage = randint(sigma.attack_power // 2, sigma.attack_power)
+
+            print(f"Atakujesz {sigma.name}a i zadajesz mu {hero_damage} obrażeń.")
+            sigma.life -= hero_damage
+
+            if sigma.life <= 0:
+                print(f"Gratulacje! Pokonałeś {sigma.name}a, dostajesz {life} punktów zycia i {mana} many.")
+                self.hero.life += life
+                self.hero.mana += mana
+                print(f"Aktualny stan punktów życia: {self.hero.life}")
+                print(f"Aktualny stan many: {self.hero.mana}")
+                return
+            
+            print(f"{sigma.name} kontratakuje i zadaje ci {sigma_damage} obrażeń.")
+            self.hero.life -= sigma_damage
+
+            if self.hero.life <= 0:
+                print(f"Zostałeś pokonany przez {sigma.name}a. Koniec gry.")
+                return
+            
+            print(f"Aktualny stan życia {sigma.name}a: {sigma.life}")
+            print(f"Aktualny stan  życia {self.name}a : {self.hero.life}")
+
+            print("Walka zakończona.")
+        
+    def go_gym_with_sigma(self,sigma,money,mana,life):
+        print(f"Proponujesz  silownie  {sigma.name}owi.")
+
+        success_chance = randint(1, 10)
+        if success_chance > 5:
+            print(f"Udało ci się przekonac {sigma.name}a ! Idziesz z nim na silownie i tracisz", money,"pieniedzy")
+            self.hero.money -= money
+            print(f"Aktualny stan  pieniedzy {self.name}a : {self.hero.money}")
+        else:
+            print(f"Twoja prośba zostala odrzucona ! Musisz walczyć z {sigma.name}em.")
+            self.battle_sigma(sigma,mana,life)
+
+        
+    
+    
 # Rozpocznij grę    
 gra = Game()
 gra.start() 
 
+
+    

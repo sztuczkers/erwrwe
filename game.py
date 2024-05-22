@@ -1,6 +1,6 @@
 from random import randint
 
-from hero import Hero
+from character_selection import choose_hero
 
 from enemies import Wolf, Dragon, Shark, Barbarian, Scorpio, Shaman, Fox, Snake, Bear, Spider, Deer, Sigma, Demon
 
@@ -16,43 +16,15 @@ class Game:
         print("Podaj imię swojego bohatera:")
         self.name = input()
         
-        print("Wybierz swoją postać:")
-        print("1.Wojownik ma  200 punktów życia, 180 many, 650 pieniedzy, 120 punktów ataku i 180 punktów obrony")
-        print("2. Mag ma  180 punktów życia, 240 many, 600 pieniedzy, 140 punktów ataku i 140 punktów obrony")
-        print("3. Łowca ma  200 punktów życia, 200 many, 700 pieniedzy, 110 punktów ataku i 170 punktów obrony")
-        print("4. Paladyn ma  220 punktów życia, 160 many, 800 pieniedzy, 130 punktów ataku i 160 punktów obrony")
-    
-        
-        while True:
-            try:
-                character_decision = int(input("Wybierz numer postaci: "))
-                if 1 <= character_decision <= 4:
-                    break
-                else:
-                    print("Wybierz liczbę od 1 do 4.")
-            except ValueError:
-                print("Wybierz poprawną liczbę.")
+        self.hero = choose_hero(self.name)
 
-        self.hero = self.create_hero(character_decision)
-            
         print("Witaj, " + self.name + "! Zapraszamy do magicznego królestwa, gdzie odważni bohaterowie wyruszają na niebezpieczne przygody, by uratować świat przed mrocznymi siłami")
         print(f"Masz {self.hero.money} pieniędzy.")
         print(f"Masz {self.hero.life} punktów życia.")
-        print(f"Masz {self.hero.defense} punktów obrony." )
+        print(f"Masz {self.hero.defense} punktów obrony.")
         print(f"Masz {self.hero.attack} punktów ataku.")
         print(f"Masz {self.hero.mana} many.")
         self.choose_difficulty()
-    
-    def create_hero(self, decision):
-        if decision == 1:
-            return Hero("Wojownik", 200, 180, 650, 120, 180)
-        elif decision == 2:
-            return Hero("Mag", 180, 240, 600, 140, 140)
-        elif decision == 3:
-            return Hero("Łowca", 200, 200, 700, 110, 170)
-        elif decision == 4:
-            return Hero("Paladyn", 220, 160, 800, 130, 160)
-
 
     def choose_difficulty(self):
         print("Wybierz poziom trudności:")
@@ -78,7 +50,7 @@ class Game:
         print("Twój bohater traci", self.difficulty * 10, "punktów ataku z powodu wybranego poziomu trudności.")
         
         print("Rozpoczynasz grę na poziomie trudności:", self.get_difficulty_name())
-        print("Twoja misja zaczyna się podczas konnej wyprawy. Nagle atakuje cię trzy zmutowanne wilki!")
+        print("Twoja misja zaczyna się podczas konnej wyprawy. Nagle atakuje cię trzy zmutowane wilki!")
         self.make_decision()
 
     def get_difficulty_name(self):
@@ -1081,6 +1053,6 @@ class Game:
                 return
 
 
-    
 game = Game()
 game.start()
+    
